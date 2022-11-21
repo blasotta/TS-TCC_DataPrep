@@ -1,0 +1,3 @@
+data/*
+data_preprocessing/motion_sense/A_DeviceMotion_data/*
+data_preprocessing/motion_sense/__pycache__/*
