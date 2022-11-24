@@ -18,6 +18,8 @@ train_tot_acc_x = np.loadtxt(f'{data_dir}/train/Inertial Signals/total_acc_x_tra
 train_tot_acc_y = np.loadtxt(f'{data_dir}/train/Inertial Signals/total_acc_y_train.txt')
 train_tot_acc_z = np.loadtxt(f'{data_dir}/train/Inertial Signals/total_acc_z_train.txt')
 
+train_subjects = np.loadtxt(f'{data_dir}/train/subject_train.txt')
+
 test_acc_x = np.loadtxt(f'{data_dir}/test/Inertial Signals/body_acc_x_test.txt')
 test_acc_y = np.loadtxt(f'{data_dir}/test/Inertial Signals/body_acc_y_test.txt')
 test_acc_z = np.loadtxt(f'{data_dir}/test/Inertial Signals/body_acc_z_test.txt')
@@ -27,6 +29,8 @@ test_gyro_z = np.loadtxt(f'{data_dir}/test/Inertial Signals/body_gyro_z_test.txt
 test_tot_acc_x = np.loadtxt(f'{data_dir}/test/Inertial Signals/total_acc_x_test.txt')
 test_tot_acc_y = np.loadtxt(f'{data_dir}/test/Inertial Signals/total_acc_y_test.txt')
 test_tot_acc_z = np.loadtxt(f'{data_dir}/test/Inertial Signals/total_acc_z_test.txt')
+
+test_subjects = np.loadtxt(f'{data_dir}/test/subject_test.txt')
 
 # Stacking channels together data
 train_data = np.stack((train_acc_x, train_acc_y, train_acc_z,
@@ -43,18 +47,23 @@ y_test -= np.min(y_test)
 
 
 X_train, X_val, y_train, y_val = train_test_split(train_data, train_labels, test_size=0.2, random_state=42)
+_, _, subs_train, subs_val = train_test_split(train_data, train_subjects, test_size=0.2, random_state=42)
+
 
 dat_dict = dict()
 dat_dict["samples"] = torch.from_numpy(X_train)
 dat_dict["labels"] = torch.from_numpy(y_train)
+dat_dict["info"] = torch.from_numpy(subs_train)
 torch.save(dat_dict, os.path.join(output_dir, "train.pt"))
 
 dat_dict = dict()
 dat_dict["samples"] = torch.from_numpy(X_val)
 dat_dict["labels"] = torch.from_numpy(y_val)
+dat_dict["info"] = torch.from_numpy(subs_val)
 torch.save(dat_dict, os.path.join(output_dir, "val.pt"))
 
 dat_dict = dict()
 dat_dict["samples"] = torch.from_numpy(X_test)
 dat_dict["labels"] = torch.from_numpy(y_test)
+dat_dict["info"] = torch.from_numpy(test_subjects)
 torch.save(dat_dict, os.path.join(output_dir, "test.pt"))
