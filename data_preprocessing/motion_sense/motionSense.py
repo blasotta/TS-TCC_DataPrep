@@ -139,6 +139,7 @@ def get_windows(dataset, win_size, step_size):
     inf = []
     label_values = list()
     labels = ('id', 'trial')
+    split_idx = dataset.shape[1] - 7
     # Get all cominations of subject ids and trials to calculate windows on
     for label in labels:
         unique_vals = sorted(dataset[label].unique())
@@ -147,8 +148,8 @@ def get_windows(dataset, win_size, step_size):
     
     for i, comb in enumerate(combinations):
         sub = dataset[(dataset['id'] == comb[0]) & (dataset['trial'] == comb[1])]
-        data = sub.iloc[:, :12]
-        info = sub.iloc[0, 12:]
+        data = sub.iloc[:, :split_idx]
+        info = sub.iloc[0, split_idx:]
         arr = data.to_numpy()
         c = info.to_numpy()
         arr = np.ascontiguousarray(arr)

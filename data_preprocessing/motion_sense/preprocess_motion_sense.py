@@ -20,6 +20,7 @@ TRIAL_CODES = {
 # select sensor data types, typically all are wanted so set them all
 # attitude(roll, pitch, yaw); gravity(x, y, z); rotationRate(x, y, z); userAcceleration(x,y,z)
 sdt = ["attitude", "gravity", "rotationRate", "userAcceleration"]
+# sdt = ["userAcceleration"]
 print("[INFO] -- Selected sensor data types: "+str(sdt))    
 act_labels = ACT_LABELS [0:6]
 print("[INFO] -- Selected activites: "+str(act_labels))    
@@ -62,6 +63,7 @@ train_data, val_data = dfs2.train_test_split(dataset = split_data,
                                               verbose=0)
 
 print("[INFO] -- Segmenting data into windows")
+
 """
 Creation of windowed data for MotionSense:
 Segment all data into windows, of 128 samples per window (at 50 Hz 2.56 s).
