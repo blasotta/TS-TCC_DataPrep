@@ -135,8 +135,11 @@ def make_views(arr, win_size, step_size, writeable = False):
 
 def get_windows(dataset, win_size, step_size):
     dat = []
+    lab = []
+    inf = []
     label_values = list()
     labels = ('id', 'trial')
+    # Get all cominations of subject ids and trials to calculate windows on
     for label in labels:
         unique_vals = sorted(dataset[label].unique())
         label_values.append(unique_vals)
@@ -151,11 +154,16 @@ def get_windows(dataset, win_size, step_size):
         arr = np.ascontiguousarray(arr)
         c = np.ascontiguousarray(c)
         view_data = make_views(arr, win_size, step_size)
-        shape = (view_data.shape[0], view_data.shape[1]*view_data.shape[2])
-        stacked = np.reshape(view_data,newshape=shape)
         subject_info = np.tile(c, (view_data.shape[0], 1))
-        combined = np.concatenate((stacked, subject_info), axis=1)
-        dat.append(combined)
+        split = np.hsplit(subject_info, [1])
+        label = split[0].flatten()
+        sinfo = split[1]
+        dat.append(view_data)
+        lab.append(label)
+        inf.append(sinfo)
     
-    np_arr = np.concatenate(dat)
-    return np_arr
+    data = np.transpose(np.concatenate(dat), (0,2,1))
+    labels = np.concatenate(lab)
+    info = np.concatenate(inf)
+    
+    return data, labels, info
