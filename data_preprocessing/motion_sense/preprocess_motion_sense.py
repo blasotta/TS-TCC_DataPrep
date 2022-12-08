@@ -19,8 +19,8 @@ TRIAL_CODES = {
 
 # select sensor data types, typically all are wanted so set them all
 # attitude(roll, pitch, yaw); gravity(x, y, z); rotationRate(x, y, z); userAcceleration(x,y,z)
-sdt = ["attitude", "gravity", "rotationRate", "userAcceleration"]
-# sdt = ["userAcceleration"]
+# sdt = ["attitude", "gravity", "rotationRate", "userAcceleration"]
+sdt = ["userAcceleration"]
 print("[INFO] -- Selected sensor data types: "+str(sdt))    
 act_labels = ACT_LABELS [0:6]
 print("[INFO] -- Selected activites: "+str(act_labels))    
