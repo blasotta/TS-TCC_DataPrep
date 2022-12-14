@@ -91,10 +91,13 @@ def create_data(trn_subs, val_subs, tst_subs, act):
 
     trn_data, trn_labels, trn_info = get_split(data, label, sinfo, trn_subs)
     print("[INFO] -- Shape of train set:", trn_data.shape)
+    print("[INFO] -- Shape of train subject info:", trn_info.shape)
     val_data, val_labels, val_info = get_split(data, label, sinfo, val_subs)
     print("[INFO] -- Shape of val set:", val_data.shape)
+    print("[INFO] -- Shape of train subject info:", val_info.shape)
     tst_data, tst_labels, tst_info = get_split(data, label, sinfo, tst_subs)
     print("[INFO] -- Shape of test set:", tst_data.shape)
+    print("[INFO] -- Shape of train subject info:", tst_info.shape)
     
     trn_dict = make_dict(trn_data, trn_labels, trn_info) 
     val_dict = make_dict(val_data, val_labels, val_info)
