@@ -5,5 +5,5 @@ data_preprocessing/uci_har/UCI HAR Dataset/*
 data_preprocessing/realworld/*
 data_preprocessing/unimib_shar/UniMiB-SHAR/*
 data_preprocessing/unimib_shar/__pycache__/*
-data_preprocessing/carrots/001-IMU/*
+data_preprocessing/carrots/D2011-KTA-KHY/*
 data_preprocessing/carrots/__pycache__/*
