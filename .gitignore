@@ -2,8 +2,23 @@ data/*
 data_preprocessing/motion_sense/A_DeviceMotion_data/*
 data_preprocessing/motion_sense/__pycache__/*
 data_preprocessing/uci_har/UCI HAR Dataset/*
-data_preprocessing/realworld/*
 data_preprocessing/unimib_shar/UniMiB-SHAR/*
 data_preprocessing/unimib_shar/__pycache__/*
 data_preprocessing/carrots/D2011-KTA-KHY/*
 data_preprocessing/carrots/__pycache__/*
+data_preprocessing/realworld/__pycache__/*
+data_preprocessing/realworld/proband1/*
+data_preprocessing/realworld/proband2/*
+data_preprocessing/realworld/proband3/*
+data_preprocessing/realworld/proband4/*
+data_preprocessing/realworld/proband5/*
+data_preprocessing/realworld/proband6/*
+data_preprocessing/realworld/proband7/*
+data_preprocessing/realworld/proband8/*
+data_preprocessing/realworld/proband9/*
+data_preprocessing/realworld/proband10/*
+data_preprocessing/realworld/proband11/*
+data_preprocessing/realworld/proband12/*
+data_preprocessing/realworld/proband13/*
+data_preprocessing/realworld/proband14/*
+data_preprocessing/realworld/proband15/*
