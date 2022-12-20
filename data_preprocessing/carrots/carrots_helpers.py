@@ -69,29 +69,30 @@ def get_windows(X,y, win_size, step_size):
     
     return X,y
 
-def get_sub_data(subs):
+def get_sub_data(subs, win_size, step_size):
     data = []
     labels = []
+    info = []
     for sub in subs:
         X, y = load_dataset(sub)
+        X, y = get_windows(X, y, win_size, step_size)
+        sinf = np.full(X.shape[0], sub)
         data.append(X)
         labels.append(y)
+        info.append(sinf)
         
     X = np.concatenate(data)
     y = np.concatenate(labels)
+    i = np.concatenate(info)
     
-    return X, y
+    return X, y, i
 
 
 def get_carrots(win_size, step_size, trn_subs, val_subs, tst_subs):
-    trn_x, trn_y = get_sub_data(trn_subs)
-    val_x, val_y = get_sub_data(val_subs)
-    tst_x, tst_y = get_sub_data(tst_subs)
-    
-    X_trn, y_trn = get_windows(trn_x, trn_y, win_size, step_size)
-    X_val, y_val = get_windows(val_x, val_y, win_size, win_size)
-    X_tst, y_tst = get_windows(tst_x, tst_y, win_size, win_size)
+    X_trn, y_trn, i_trn = get_sub_data(trn_subs, win_size, step_size)
+    X_val, y_val, i_val = get_sub_data(val_subs, win_size, win_size)
+    X_tst, y_tst, i_tst = get_sub_data(tst_subs, win_size, win_size)
     # step size set to win_size because no overlap in validation or test data wanted
     
     
-    return X_trn, y_trn, X_val, y_val, X_tst, y_tst
+    return X_trn, y_trn, i_trn, X_val, y_val, i_val, X_tst, y_tst, i_tst

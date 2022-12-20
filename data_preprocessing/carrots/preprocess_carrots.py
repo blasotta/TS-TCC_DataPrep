@@ -19,7 +19,7 @@ step_size = 128
 
 print("[INFO] -- Loading Carrots Data")
 
-X_trn, y_trn, X_val, y_val, X_tst, y_tst = get_carrots(win_size, step_size, trn_subs, val_subs, tst_subs)
+X_trn, y_trn, i_trn, X_val, y_val, i_val, X_tst, y_tst, i_tst = get_carrots(win_size, step_size, trn_subs, val_subs, tst_subs)
 
 print("[INFO] -- Shape of train set:", X_trn.shape)
 print("[INFO] -- Shape of validation set:", X_val.shape)
@@ -37,17 +37,17 @@ print("[INFO] -- Creating and saving Pytorch datasets")
 dat_dict = dict()
 dat_dict["samples"] = torch.from_numpy(X_train)
 dat_dict["labels"] = torch.from_numpy(y_train)
-dat_dict["info"] = None # No additional subject info available for the Carrots dataset
+dat_dict["info"] = torch.from_numpy(i_trn)
 torch.save(dat_dict, os.path.join(output_dir, "train.pt"))
 
 dat_dict = dict()
 dat_dict["samples"] = torch.from_numpy(X_valid)
 dat_dict["labels"] = torch.from_numpy(y_valid)
-dat_dict["info"] = None # No additional subject info available for the Carrots dataset
+dat_dict["info"] = torch.from_numpy(i_val)
 torch.save(dat_dict, os.path.join(output_dir, "val.pt"))
 
 dat_dict = dict()
 dat_dict["samples"] = torch.from_numpy(X_test)
 dat_dict["labels"] = torch.from_numpy(y_test)
-dat_dict["info"] = None # No additional subject info available for the Carrots dataset
+dat_dict["info"] = torch.from_numpy(i_tst)
 torch.save(dat_dict, os.path.join(output_dir, "test.pt"))
