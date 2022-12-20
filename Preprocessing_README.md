@@ -30,4 +30,9 @@ For the carrots dataset no additional subject information is available and thus 
 5. If wanted, the train-test split and window_size can be adjusted in the file `preprocess_unimib.py`
 
 ## Realworld Dataset
-### TODO: 
+
+1. Download the [RealWorld dataset](https://www.uni-mannheim.de/dws/research/projects/activity-recognition/dataset/dataset-realworld/)
+2. Unzip contents into directory `data_preprocessing/realworld`
+3. In the main directory create the folder `Realworld` in the folder `data`. Such that path `data/Realworld` exists
+4. Run the script `preprocess_realworld.py`
+5. If wanted, the subjects for train, validation, test_set as well as window size and sensor types can be set
